@@ -1,3 +1,13 @@
-body {
-    background-color: aquamarine;
+body {  
+    background-color: rgb(42, 128, 99);
+}
+.profile_bal {
+    padding: 28%;
+    
+}
+.table {
+    margin: 5%;
+}
+.profile_two {
+    padding: 10%;
 }

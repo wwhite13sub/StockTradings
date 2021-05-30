@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+<body class="">
+<div class="profile_bal container mt-5">
+    <h3> Your current cash balance is $</h3>
+      <div class="contanier">
+          <table class="table table-dark table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Current Quantity</th>
+                  <th scope="col">Current Share Price</th>
+                  <th scope="col">Value</th>                
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">{{ row.name }}</th>
+                  <td>{{row.quantity }}</td>
+                  <td>{{row.value }}</td>                
+                </tr>              
+              </tbody>
+          </table>
+      </div>     
+</div>
+
+    <div class="profile_two">
+      <h2>Total Portfolio Value $</h2>
+    </div>
+  </body>
+{% endblock content %}
