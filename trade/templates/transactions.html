@@ -1,18 +1,57 @@
 {% extends 'base.html' %}
-
 {% block content %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transactions</title>
-</head>
+<link rel="stylesheet" href="{% static 'css/transaction.css' %}">
+{% csrf_token %}
 <body>
-    <h1>User Trade Transactions</h1>
-</body>
-</html>
+    
+    <h2>Transaction History</h2>
+            <div class="HLT">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>DateTime</th>
+                            <th>Transaction</th>
+                            <th>Stock</th><br>
+                            <th>Quantity</th>
+                            <th>Share Price</th>
+                            <th>Cash Impact</th>
 
+                        </tr>
+                    </thead>
+
+        <tbody>
+        {% for transaction in transactions %}
+        <tr>
+        {% load tz %}
+        {% timezone 'America/Chicago' %}
+        <td>{{ transactions.date_time }}</td>
+        {% endtimezone %}
+        <td>{{ transaction.transaction_type }}</td>
+        <td>{{ transaction.stock_name }}</td>
+        <td>{{ transaction.num_of_shares }}</td>
+        <td>{{ transaction.stock_price }}</td>
+        {% if transaction.transaction_type == "BUY" %}
+        <td>-{{ transaction.cash_impact }}</td>
+        {% else %}
+        <td>+{{ transaction.cash_impact }}</td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</div>
+<br>
+   <h3><strong>If you need to start over click here to </strong><a href="{% url 'reset' %}">Reset Account</a></h3>
+    <div class="d-flex flex-column flex-md-row justify-content-center w-100">
+    {% for hourly_graph_div in hourly_graph_divs %}
+    <div class="graph">
+    {{ hourly_graph_div | safe }}
+    </div>
+    {% endfor %}
+    </div>
+
+<body>
 {% endblock content %}

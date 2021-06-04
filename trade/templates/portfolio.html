@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+<br>
+<h5> Your current cash balance is ${{ user.userprofile.balance}}</h5>
+<br>
+<div>
+<table class="table">
+<thead>
+<tr>
+<th>STOCK</th>
+<th>Current Quantity</th>
+<th>Current Share Price</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+{% for row in stock_share_quantity_value %}
+<tr>
+<td>{{ row.name }}</td>
+<td>{{ row.quantity }}</td>
+<td>{{ row.price }}</td>
+<td>{{ row.value }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<h2>Total Portfolio Value ${{ total_portfolio_value }}</h2>
+
+
+<div class="d-flex flex-column flex-md-row justify-content">
+
+<div>
+        <div class="choice">
+        <div class="d-flex flex-row align-items-center">
+            {% for valid_stock_name in valid_stock_names %}
+            {% if stock_name == valid_stock_name %}
+            <a class="btn btn-success mx-1" href="{% url 'portfolio' %}?stock_name={{ valid_stock_name }}">{{ valid_stock_name }}</a>
+            {% else %}
+            <a class="mx-1" href="{% url 'portfolio' %}?stock_name={{ valid_stock_name }}">{{ valid_stock_name }}</a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+
+{% comment %} <div class="d-none flex-column justify-content-center align-items-start">
+        <div>
+        <label for="current_shares">Current Quanity</label>
+        <input id="currrent_shares" type="text" name="current_shares" value="{{ current_shares }}" readonly />
+        </div>
+
+        <div>
+        <label for="stock_data.open">Current Share Price</label>
+        <input id="stock_data.open" type="text" name="stock_data.open" value="{{ stock_data.open }}" readonly />
+        </div>
+
+        <div>
+        <label for="current_value">Value</label>
+        <input id="current_value" type="text" name="current_value" value="{{ current_value }}" readonly />
+        </div>
+        </div> {% endcomment %}
+        
+{% comment %} <div class="d-none">
+This is your total portfolio value:
+<input id="total_portfolio_value" type="text" name="total_portfolio_value" value="{{ total_portfolio_value }}" readonly />
+</div>
+<br>
+<br>
+<br> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="d-flex flex-column flex-md-row justify-content-center align-items-start">
+<div class="w-50">
+<table class="table">
+        <thead>
+        <tr>
+        <th>Date</th>
+        <th>Open</th>
+        <th>High</th>
+        <th>Low</th><br>
+        <th>Close</th>
+    
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for row in monthly_stock_data %}
+        <tr>
+        <td>{{ row.date }}</td>
+        <td>{{ row.open }}</td>
+        <td>{{ row.high }}</td>
+        <td>{{ row.low }}</td>
+        <td>{{ row.close }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+</div>
+
+<div class="purchase w-20">
+<div class="mt-2 flex-column justify-content-center align-items-left">
+<form action="{% url 'portfolio' %}?stock_name={{ stock_name }}" method="post">
+{% csrf_token %}
+<div class="d-flex flex-column justify-content-center align-items-start ml-3">
+<div class="d-flex flex-row justify-content-center align-items-center mb-3 ml-1">
+<input class="btn btn-success ml-2 mr-2" type="submit" name="transaction_type" value="BUY" />
+<input class="btn btn-danger" type="submit" name="transaction_type" value="SELL" />
+</div>
+<div>
+<label for="stock_price">Price</label>
+<input id="stock_price" type="text" name="stock_price" value="{{ stock_data.open }}" readonly />
+</div>
+<div>
+<label for="stock_name">Stock</label>
+<input id="stock_name" type="text" name="stock_name" value="{{ stock_name }}" readonly />
+</div>
+<div class="d-flex flex-row justify-content-center">
+<div class="">Number</div>
+<div>
+{{ transactions_form.num_of_shares }}
+{{ transactions_form.num_of_shares.errors }}
+</div>
+</div>
+</div>
+{% comment %} <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+<input class="btn btn-success mr-2" type="submit" name="transaction_type" value="BUY" />
+<input class="btn btn-danger" type="submit" name="transaction_type" value="SELL" />
+</div> {% endcomment %}
+</div>
+</form>
+</div>
+
+
+    {% comment %} <div id="" class="w-100">
+        <div class="d-flex flex-column justify-content-center align-items-start">
+        <div><h4>Open:</h4> {{ stock_data.open }}</div>
+        <div><h4>High:</h4> {{ stock_data.high }}</div>
+        <div><h4>Low:</h4> {{ stock_data.low }}</div>
+        <div><h4>Close:</h4> {{ stock_data.close }}</div>
+        <div><h4>Adj_Close:</h4> {{ stock_data.adj_close }}</div>
+        </div>
+    </div>  {% endcomment %}
+
+
+<div class="d-flex flex-column justify-content-center align-items-start ml-0">
+{% comment %}this means safe to showcontent {% endcomment%}
+<div class="graph">{{ historical_data_div | safe }}</div>
+
+
+{% comment %} <div class="mt-4 flex-column justify-content-center align-items-left">
+<form action="{% url 'portfolio' %}?stock_name={{ stock_name }}" method="post">
+{% csrf_token %}
+<div class="d-flex flex-column justify-content-center align-items-start">
+<div>
+<label for="stock_price">Stock Price</label>
+<input id="stock_price" type="text" name="stock_price" value="{{ stock_data.open }}" readonly />
+</div>
+<div>
+<label for="stock_name">Stock Name</label>
+<input id="stock_name" type="text" name="stock_name" value="{{ stock_name }}" readonly />
+</div>
+<div class="d-flex flex-row justify-content-center">
+<div class="mr-1">Number of shares</div>
+<div>
+{{ transaction_form.num_of_shares }}
+{{ transaction_form.num_of_shares.errors }}
+</div>
+</div>
+<div class="d-flex flex-row justify-content-center align-items-center mt-3">
+<input class="btn btn-success mr-2" type="submit" name="transaction_type" value="BUY" />
+<input class="btn btn-danger" type="submit" name="transaction_type" value="SELL" />
+</div>
+</div>
+</form>
+</div> {% endcomment %}
+    
+</div>
+</div>
+</div>
+
+
+</div>
+{% endblock content %}

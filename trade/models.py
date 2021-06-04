@@ -33,11 +33,11 @@ class UserProfile(models.Model):
 
 
 
-class Transaction(models.Model):
+class Transactions(models.Model):
 
     STOCK_NAMES = [
         ("TSLA", "TESLA"),
-        ("BMW", "Bayerische Motoren Werke Aktiengesellschaft"),
+        ("BMW.DE", "Bayerische Motoren Werke Aktiengesellschaft"),
     ]
     TRANSACTION_TYPES = [
         ("BUY", "Buy"),
@@ -48,7 +48,7 @@ class Transaction(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     num_of_shares = models.PositiveIntegerField()
     stock_price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Price of each unit share") 
-    stock_name = models.CharField(max_length=4, choices=STOCK_NAMES)
+    stock_name = models.CharField(max_length=7, choices=STOCK_NAMES)
     transaction_type = models.CharField(max_length=4, choices=TRANSACTION_TYPES)
     cash_impact = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
 

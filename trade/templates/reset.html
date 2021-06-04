@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<div class="d-flex flex-column">
+<h1> Click on "Reset Account " only if you want to: </h1>
+    <ol>
+        <li> Delete all transactions</li>
+        <li> Completely start over with the initial cash balance of $5,000.00</li>
+    </ol>
+   
+<div class="mt-4">
+<form action="" method="post">
+{% csrf_token %}
+<input class="btn btn-primary" type='submit' name="reset" value="Reset Account" />
+</form>
+</div>
+
+</div>
+{% endblock content %}
