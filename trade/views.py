@@ -7,6 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.utils import timezone
+
+
 import plotly 
 from plotly import express as plotly_express
 
@@ -39,7 +41,7 @@ def get_historical_data_html_div(ticker_name, days=90):
 
     df = df.reset_index()
 
-    fig = plotly_express.line(df, x="Date", y="Open", title=f"90 days stock price for {ticker_name}")
+    fig = plotly_express.line(df, x="Date", y="Close", title=f"90 days stock price for {ticker_name}")
 
     html_div = plotly.offline.plot(fig, output_type="div")
     return html_div
@@ -118,7 +120,7 @@ def get_hourly_div(ticker_name):
     return div
 
 
-    # 3 month history [10/1/2020, 9/1/2020, 8/1/2020 ] #ticker_name 'TSLA'
+    
 def get_current_stock_data(ticker_name):
     df = yf.download(ticker_name, timezone.now().strftime("%Y-%m-%d"), period="1m", interval="1m")
 

@@ -18,7 +18,7 @@ class TransactionsForm(ModelForm):
 
         cleaned_data = super().clean()
 
-        # Num of shares
+        # Num of shares errors
         num_of_shares = cleaned_data["num_of_shares"]
         if num_of_shares < 1:
             raise ValidationError({
@@ -53,4 +53,4 @@ class TransactionsForm(ModelForm):
 
     class Meta:
         model = Transactions
-        exclude = ["date_time", "userprofile", "cash_impact"] # table to not include values of
+        exclude = ["date_time", "userprofile", "cash_impact"] # table will not include values of

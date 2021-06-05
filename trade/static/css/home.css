@@ -1,6 +1,10 @@
 body {
     background-color: rgb(212, 200, 169);
 }
+
+.header > h5{
+    margin-left: 75%;
+}
 .phots{
     
     opacity: .7;
