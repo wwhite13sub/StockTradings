@@ -26,7 +26,7 @@
         <tr>
         {% load tz %}
         {% timezone 'America/Chicago' %}
-        <td>{{ transactions.date_time }}</td>
+        <td>{{ transaction.date_time }}</td>
         {% endtimezone %}
         <td>{{ transaction.transaction_type }}</td>
         <td>{{ transaction.stock_name }}</td>
