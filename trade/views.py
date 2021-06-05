@@ -14,7 +14,6 @@ from collections import namedtuple
 from trade import models as trade_models
 
 from .forms import TransactionsForm
-# import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import csv
@@ -69,7 +68,7 @@ def get_monthly_stock_data(ticker_name):
         interval="1mo",
     )
     df = df.reset_index()
-    df = df.dropna()
+    df = df.dropna() #pandas
 
     final_data = []
 
@@ -93,7 +92,7 @@ def get_hourly_stock_html_div(ticker_names):
         df = yf.download(ticker_names, period="1d", interval="60m")
     except Exception as e:
         print(repr(e))
-        return "Could not load yahoo financial data"
+        return "Could not load yahoo financial data "
     open_df = df.Open
     open_df = open_df.reset_index()
     #[0]date/time index slice [1: take every other values]

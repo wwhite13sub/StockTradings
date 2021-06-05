@@ -2,13 +2,13 @@
 {% block content %}
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'css/transaction.css' %}">
+<link rel="stylesheet" href="{% static 'css/transactions.css' %}">
 {% csrf_token %}
 <body>
     
-    <h2>Transaction History</h2>
+    <h2 class="tran_header">Transaction History</h2>
             <div class="HLT">
-                <table class="table table-dark table-hover">
+                <table class="table table-dark table-hover ">
                     <thead>
                         <tr>
                             <th>DateTime</th>
@@ -44,7 +44,7 @@
     </div>
 </div>
 <br>
-   <h3><strong>If you need to start over click here to </strong><a href="{% url 'reset' %}">Reset Account</a></h3>
+   <h5 class="rest_note"><strong>If you need to start over click here to </strong><a href="{% url 'reset' %}">Reset Account</a></h5>
     <div class="d-flex flex-column flex-md-row justify-content-center w-100">
     {% for hourly_graph_div in hourly_graph_divs %}
     <div class="graph">
