@@ -5,7 +5,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
 <br>
-<h2>Total Portfolio Value ${{ total_portfolio_value }}</h2>
+<h2 class="bals">Total Portfolio Value ${{ total_portfolio_value }}</h2>
 <br>
 <div>
 <table class="table table-dark table-striped">
@@ -29,7 +29,7 @@
 </tbody>
 </table>
 </div>
-    <div class="container">
+    <div class="container cash">
         <h5> Your current cash balance is ${{ user.userprofile.balance}}</h5>
     </div>
 
@@ -51,7 +51,7 @@
 
     <div class="d-none flex-column justify-content-center align-items-start">
         <div>
-        <label for="current_shares">Current Quanity</label>
+        <label for="current_shares">Current Quantity</label>
         <input id="currrent_shares" type="text" name="current_shares" value="{{ current_shares }}" readonly />
         </div>
 
@@ -69,15 +69,14 @@
 
 
 <div class="d-flex flex-column flex-md-row justify-content-center align-items-start">
-<div class="w-50">
+<div class="w-70 info">
     <table class="table table-info table-hover">
         <thead>
         <tr>
             <th>Date</th>
             <th>Open</th>
             <th>High</th>
-            <th>Low</th><br>
-               
+            <th>Low</th>               
         </tr>
         </thead>
 
@@ -87,8 +86,7 @@
             <td>{{ row.date }}</td>
             <td>{{ row.open }}</td>
             <td>{{ row.high }}</td>
-            <td>{{ row.low }}</td>
-            
+            <td>{{ row.low }}</td>            
         </tr>
         {% endfor %}
         </tbody>
@@ -101,10 +99,11 @@
     {% csrf_token %}
         <div class="d-flex flex-column justify-content-center align-items-start ml-3">
             <div class="d-flex flex-row justify-content-center align-items-center mb-3 ml-1">
-                <input class="btn btn-success ml-2 mr-2" type="submit" name="transaction_type" value="BUY" />
+                <input class="btn btn-success ml-2 mr-2 mx-4" type="submit" name="transaction_type" value="BUY" />
                 <input class="btn btn-danger" type="submit" name="transaction_type" value="SELL" />
             </div>
-            <div>
+            <div class="purchase">
+                <div>
                 <label for="stock_price">Price</label>
                 <input id="stock_price" type="text" name="stock_price" value="{{ stock_data.open }}" readonly />
             </div>
@@ -113,7 +112,8 @@
                 <input id="stock_name" type="text" name="stock_name" value="{{ stock_name }}" readonly />
             </div>
             <div class="d-flex flex-row justify-content-center">
-                <div class="">Number</div>
+                <div class="num">Number</div>
+                </div>
                     <div>
                         {{ transactions_form.num_of_shares }}
                     <div class="error_mss">{{ transactions_form.num_of_shares.errors }}</div>
@@ -125,7 +125,7 @@
 </div>   
 
 
-<div class="d-flex flex-column justify-content-center align-items-start ml-0">
+<div class="d-flex flex-column justify-content-center align-items-start mx-5">
 <div class="graph">{{ historical_data_div | safe }}</div>   
 
 

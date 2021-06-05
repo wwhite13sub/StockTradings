@@ -1,3 +1,51 @@
+.bals {
+    margin-left: 15%;
+    margin-top: 3%;
+    color:rgb(0, 65, 139);    
+}
+
 .error_mss {
     color: red;
+}
+.info{
+    padding: 8%;
+}
+.purchase>input {
+    width:2%;
+}
+.num {
+    margin-right:70%;
+}
+
+@media only screen and (min-width: 992px) {
+    body {
+        background-color: rgb(212, 200, 169);
+    }
+    .bals {
+        margin-left: 30%;
+        margin-top: 3%;
+        color:rgb(0, 65, 139);
+    }
+    .cash {
+        margin-left: 62%;
+        background-color: darkgray;
+        padding:2%;
+        width: 35%;
+    }
+    .info{
+        padding: 3%;
+    }
+    .error_mss {
+        color: red;
+    }
+    .choice {
+        margin-left: 8%;
+        margin-top: 2%;
+    }
+    .purchase>input {
+        width:2%;
+    }
+    .num {
+        margin-right:70%;
+    }
 }
