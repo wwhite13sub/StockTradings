@@ -5,7 +5,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
-<div class="d-flex flex-column">
+<div class="d-flex flex-column all">
 <h1> Click on "Reset Account " only if you want to: </h1>
     <ol>
         <li> Delete all transactions</li>
@@ -15,7 +15,7 @@
 <div class="mt-4">
 <form action="" method="post">
 {% csrf_token %}
-<input class="btn btn-primary" type='submit' name="reset" value="Reset Account" />
+<input class="btn btn-primary" id="restart" type='submit' name="reset" value="Reset Account" />
 </form>
 </div>
 
