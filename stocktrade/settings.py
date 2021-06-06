@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-3p#2l_4re#a+u&frpr_w(=bh&04$9_z2b)4(-very87+ljo21-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = config('Allowed_HOSTS', cast=Csv())
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -131,4 +131,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
-django_heroku.settings(locals())
