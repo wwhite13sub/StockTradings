@@ -16,6 +16,9 @@
 .num {
     margin-right:70%;
 }
+.port_val {
+    padding: 3%;
+}
 
 @media only screen and (min-width: 992px) {
     body {
@@ -47,5 +50,8 @@
     }
     .num {
         margin-right:70%;
+    }
+    .port_val {
+        padding: 3%;
     }
 }

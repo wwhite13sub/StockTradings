@@ -10,14 +10,14 @@ body {
     opacity: .7;   
     width:80%;
     height:85%;
-    margin-left: 12%;
+    margin-left: 15%;
 }
 
 @media only screen and (min-width: 992px){
-    body {
-        background-color: rgb(212, 200, 169);
+   body {
+    background-color: rgb(212, 200, 169);
     }
-    
+
     .header{
         margin-left: 28%;
         margin-bottom: 5%;
