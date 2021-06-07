@@ -1,3 +1,6 @@
+body {
+    background-color: rgb(212, 200, 169);
+}
 .bals {
     margin-left: 15%;
     margin-top: 3%;
@@ -12,6 +15,9 @@
 }
 .purchase>input {
     width:2%;
+}
+.purchase {
+    padding: 5%;
 }
 .num {
     margin-right:70%;
