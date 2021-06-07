@@ -24,7 +24,7 @@ class TransactionsForm(ModelForm):
             raise ValidationError({
                 "num_of_shares": ["Num of shares must be 1 or more"]
             })
-        # import pdb; pdb.set_trace()
+        
         transaction_type = cleaned_data["transaction_type"]
         stock_name = cleaned_data["stock_name"]
         stock_price = cleaned_data["stock_price"]

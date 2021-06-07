@@ -3,11 +3,29 @@ body {
 }
 
 .header{
-    margin-left: 55%;
+    margin-left: 28%;
     margin-bottom: 5%;
 }
 .phots{    
     opacity: .7;   
-    width:60%;
-    height:25%;
+    width:80%;
+    height:85%;
+    margin-left: 12%;
+}
+
+@media only screen and (min-width: 992px){
+    body {
+        background-color: rgb(212, 200, 169);
+    }
+    
+    .header{
+        margin-left: 28%;
+        margin-bottom: 5%;
+    }
+    .phots{    
+        opacity: .7;   
+        width:80%;
+        height:85%;
+        margin-left: 12%;
+    } 
 }

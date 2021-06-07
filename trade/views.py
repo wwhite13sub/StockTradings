@@ -98,10 +98,10 @@ def get_hourly_stock_html_div(ticker_names):
     open_df = df.Open
     open_df = open_df.reset_index()
     #[0]date/time index slice [1: take every other values]
-    # fig = plotly_express.line(open_df, x=open_df.columns[0], y=open_df.columns[1:], title="Hourly Stock Price")
+    
     fig = plotly_express.line(open_df, x=open_df.columns[0], y=open_df.columns[2], title="Hourly Stock Price")
      
-    html_div = plotly.offline.plot(fig, output_type="div") #html div means (html tag )
+    html_div = plotly.offline.plot(fig, output_type="div") #html(html tag )
     return html_div
 
 def get_hourly_div(ticker_name):
@@ -111,8 +111,7 @@ def get_hourly_div(ticker_name):
     except Exception as e:
         print(repr(e))
         return "Could not retrieve data at this moment"
-    #open_df = df.Open
-    #import pdb; pdb.set_trace()
+   
     df = df.reset_index()
     fig = plotly_express.line(df, x=df.columns[0], y=df.columns[1], title=f"Hourly Stock {ticker_name}")
 
@@ -129,9 +128,9 @@ def get_current_stock_data(ticker_name):
 
     df = df.tail(1)
     df = df.reset_index()
-    #import pdb; pdb.set_trace()
+    
 
-    # date_time = (df["Date Time"])
+    
     open = round(float(df.Open), 2)
     high = round(float(df.High),2)
     low = round(float(df.Low),2)
